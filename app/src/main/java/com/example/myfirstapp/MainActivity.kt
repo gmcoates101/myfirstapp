@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,12 +15,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val textViewName = findViewById<TextView>(R.id.textViewName)
+        textViewName.text = peopleCount.toString()
+
         val buttonClickMe = findViewById<Button>(R.id.buttonClickMe)
         buttonClickMe.setOnClickListener {
-            val textViewName = findViewById<TextView>(R.id.textViewName)
+
             peopleCount++
             textViewName.text = peopleCount.toString()
-            // Toast.makeText(this, "You counted $peopleCount times", Toast.LENGTH_LONG).show()
+
+            if (peopleCount % 10 == 0) {
+                Toast.makeText(this, "You counted $peopleCount times", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }
